@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Footer from '../components/footer'
 import Header from '../components/header'
+import Select from '../components/select'
 
 const Home: NextPage = () => {
   return (
@@ -13,8 +14,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className='container grow m-auto'>
-
+      <main className='container grow m-auto p-2'>
+        <Select />
       </main>
       <Footer />
     </div>
