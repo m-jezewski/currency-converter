@@ -1,7 +1,7 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useRef } from "react"
+import Image from "next/image"
+import { Dispatch, KeyboardEvent, SetStateAction, useRef, useState } from "react"
 
 interface CustomSelectOptionProps {
-    countryFlagSrc?: string
     code: string
     name: string
     setSelectedOption: Dispatch<SetStateAction<{
@@ -10,7 +10,9 @@ interface CustomSelectOptionProps {
     }>>
 }
 
-const CustomSelectOption = ({ countryFlagSrc, code, name, setSelectedOption }: CustomSelectOptionProps) => {
+const CustomSelectOption = ({ code, name, setSelectedOption }: CustomSelectOptionProps) => {
+    const [flagSrc, setFlagSrc] = useState(`/flags/${code}.webp`)
+    const imageRef = useRef<any>(null!)
 
     const handleClick = () => {
         setSelectedOption({ currencyCode: code, currencyName: name })
@@ -31,9 +33,19 @@ const CustomSelectOption = ({ countryFlagSrc, code, name, setSelectedOption }: C
             onClick={handleClick}
             onKeyDown={handleKeyDown}
         >
-            <div className="w-10 h-7 bg-red-700 inline-block" /> {/* country flag will be here */}
+            <Image
+                src={flagSrc}
+                onError={() => { setFlagSrc('/flags/BLANK.webp') }}
+                alt=''
+                width={60}
+                height={30}
+                placeholder='blur'
+                blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPUfQEAAUgBF51cOiYAAAAASUVORK5CYII='}
+                quality={100}
+                className='rounded-sm'
+            />
             <span className='text-xl font-semibold'>{code}</span> {/* ISO code */}
-            <span className='text-lg ml-auto'>{name}</span> {/* Full currency name */}
+            <span className='text-base ml-auto max-w-0.25xl text-right'>{name}</span> {/* Full currency name */}
         </li>
     );
 }

@@ -7,6 +7,11 @@ module.exports = {
       fontFamily: {
         sans: ['Quicksand', ...defaultTheme.fontFamily.sans],
       },
+
+      maxWidth: {
+        '0.25xl': '10rem',
+        '0.5xl': '20rem',
+      },
     },
   },
   plugins: [],

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Footer from '../components/footer'
 import Header from '../components/header'
 import Select from '../components/select'
+import { useFetch } from '../hooks/useFetch'
 
 const Home: NextPage = () => {
   return (
